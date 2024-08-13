@@ -1,17 +1,17 @@
 name: Example
 on:
   push:
-    jobs:
-      job-with-mysql-8_0:
-        runs-on: ubuntu-20.04
-        environment: dev
-        env:
+jobs:
+  job-with-mysql-8_0:
+    runs-on: ubuntu-20.04
+    environment: dev
+    env:
           MYSQL_ROOT_PASSWORD: root_password
           MYSQL_DATABASE: foo
           MYSQL_USER: user1
           MYSQL_PASSWORD: user_password
           NEW_DATABASE: new_db
-        services:
+    services:
           db:
             image: mysql:8.0
             ports:
@@ -26,7 +26,7 @@ on:
               --health-interval 10s
               --health-timeout 5s
               --health-retries 5
-        steps:
+    steps:
           - name: Show Docker containers
             run: docker ps -a
           - name: Wait for MySQL to be ready
